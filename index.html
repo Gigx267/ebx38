@@ -6,7 +6,7 @@
     <title>TD Bank Statement - Online Banking</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        /* 2012 Style Reset */
+        /* 2012 Style Reset - Mobile First Approach */
         * {
             margin: 0;
             padding: 0;
@@ -21,23 +21,25 @@
             font-size: 14px;
             background-image: linear-gradient(to bottom, #e6e6e6, #f9f9f9);
             min-height: 100vh;
+            padding: 10px;
         }
         
-        /* 2012 Container Style */
+        /* 2012 Container Style - Responsive */
         .container {
-            width: 1000px;
-            margin: 20px auto;
+            max-width: 1000px;
+            margin: 10px auto;
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             border: 1px solid #ccc;
             overflow: hidden;
+            width: 100%;
         }
         
-        /* 2012 Header Style */
+        /* 2012 Header Style - Responsive */
         .app-header {
             background: linear-gradient(to bottom, #0066cc, #004a99);
-            padding: 15px 25px;
+            padding: 15px;
             color: white;
             border-bottom: 3px solid #ffcc00;
             position: relative;
@@ -45,9 +47,17 @@
         
         .header-top {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        @media (min-width: 768px) {
+            .header-top {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 10px;
+            }
         }
         
         .bank-logo {
@@ -57,61 +67,93 @@
         }
         
         .bank-logo i {
-            font-size: 32px;
+            font-size: 28px;
             color: #ffcc00;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
         
         .bank-logo h1 {
-            font-size: 28px;
+            font-size: 22px;
             font-weight: bold;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+        }
+        
+        @media (min-width: 768px) {
+            .bank-logo i {
+                font-size: 32px;
+            }
+            
+            .bank-logo h1 {
+                font-size: 28px;
+                letter-spacing: 1px;
+            }
         }
         
         .welcome-msg {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: normal;
+            margin-top: 5px;
         }
         
         .user-info {
-            text-align: right;
+            text-align: left;
             background-color: rgba(255, 255, 255, 0.2);
-            padding: 8px 15px;
+            padding: 8px 12px;
             border-radius: 5px;
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
+        @media (min-width: 768px) {
+            .user-info {
+                text-align: right;
+                padding: 8px 15px;
+            }
+        }
+        
         .user-info .username {
             font-weight: bold;
-            font-size: 16px;
+            font-size: 14px;
         }
         
         .user-info .account {
-            font-size: 13px;
+            font-size: 12px;
             color: #eee;
         }
         
-        /* 2012 Navigation Bar */
+        /* 2012 Navigation Bar - Mobile Responsive */
         .nav-bar {
             background-color: #f5f5f5;
             border-bottom: 1px solid #ddd;
-            padding: 0 25px;
+            padding: 0;
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
-            height: 40px;
+            min-height: 40px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
         
         .nav-bar a {
             color: #0066cc;
             text-decoration: none;
-            padding: 10px 15px;
+            padding: 10px 12px;
             border-right: 1px solid #ddd;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 13px;
             display: inline-block;
             height: 100%;
-            line-height: 40px;
+            line-height: 20px;
+            white-space: nowrap;
+            flex: 1 0 auto;
+            text-align: center;
+        }
+        
+        @media (min-width: 768px) {
+            .nav-bar a {
+                padding: 10px 15px;
+                flex: none;
+            }
         }
         
         .nav-bar a:hover {
@@ -125,23 +167,50 @@
         
         /* 2012 Content Area */
         .content-area {
-            padding: 20px 25px;
+            padding: 15px;
+        }
+        
+        @media (min-width: 768px) {
+            .content-area {
+                padding: 20px 25px;
+            }
         }
         
         .page-title {
-            font-size: 22px;
+            font-size: 18px;
             color: #004a99;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             padding-bottom: 10px;
             border-bottom: 2px solid #eee;
         }
         
-        /* 2012 Summary Boxes */
+        @media (min-width: 768px) {
+            .page-title {
+                font-size: 22px;
+            }
+        }
+        
+        /* 2012 Summary Boxes - Responsive Grid */
         .summary-boxes {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 25px;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        @media (min-width: 576px) {
+            .summary-boxes {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .summary-boxes {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 15px;
+                margin-bottom: 25px;
+            }
         }
         
         .summary-box {
@@ -162,15 +231,21 @@
         }
         
         .summary-box-title {
-            font-size: 16px;
+            font-size: 14px;
             color: #555;
             font-weight: bold;
         }
         
         .summary-box-value {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
             margin: 10px 0;
+        }
+        
+        @media (min-width: 768px) {
+            .summary-box-value {
+                font-size: 24px;
+            }
         }
         
         .balance-positive {
@@ -192,21 +267,31 @@
             margin-top: 8px;
         }
         
-        /* 2012 Statement Controls */
+        /* 2012 Statement Controls - Responsive */
         .statement-controls {
             background-color: #f5f5f5;
             border: 1px solid #ddd;
             border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 20px;
+            padding: 12px;
+            margin-bottom: 15px;
             display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            align-items: center;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        @media (min-width: 768px) {
+            .statement-controls {
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+                padding: 15px;
+                gap: 15px;
+            }
         }
         
         .period-selector {
             display: flex;
+            flex-wrap: wrap;
             gap: 5px;
         }
         
@@ -218,6 +303,14 @@
             cursor: pointer;
             font-size: 13px;
             color: #555;
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        @media (min-width: 576px) {
+            .period-btn {
+                flex: none;
+            }
         }
         
         .period-btn:hover {
@@ -233,6 +326,13 @@
         
         .filter-dropdown {
             position: relative;
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .filter-dropdown {
+                width: auto;
+            }
         }
         
         .filter-dropdown select {
@@ -244,13 +344,26 @@
             appearance: none;
             font-size: 13px;
             color: #555;
-            min-width: 150px;
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .filter-dropdown select {
+                min-width: 150px;
+                width: auto;
+            }
         }
         
         .search-box {
-            margin-left: auto;
             display: flex;
-            align-items: center;
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .search-box {
+                width: auto;
+                margin-left: auto;
+            }
         }
         
         .search-box input {
@@ -258,8 +371,15 @@
             border: 1px solid #bbb;
             border-right: none;
             border-radius: 3px 0 0 3px;
-            width: 200px;
+            width: 100%;
             font-size: 13px;
+            min-width: 0;
+        }
+        
+        @media (min-width: 768px) {
+            .search-box input {
+                width: 200px;
+            }
         }
         
         .search-btn {
@@ -270,20 +390,30 @@
             border-radius: 0 3px 3px 0;
             cursor: pointer;
             color: #555;
+            flex-shrink: 0;
         }
         
-        /* 2012 Statement Table */
+        /* 2012 Statement Table - Mobile Responsive */
         .statement-table-container {
             border: 1px solid #ddd;
             border-radius: 5px;
             overflow: hidden;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
         
         .statement-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 13px;
+            min-width: 800px;
+        }
+        
+        @media (max-width: 767px) {
+            .statement-table {
+                font-size: 12px;
+            }
         }
         
         .statement-table thead {
@@ -292,11 +422,18 @@
         }
         
         .statement-table th {
-            padding: 12px 15px;
+            padding: 10px 8px;
             text-align: left;
             font-weight: bold;
             color: #555;
             border-right: 1px solid #ddd;
+            white-space: nowrap;
+        }
+        
+        @media (min-width: 768px) {
+            .statement-table th {
+                padding: 12px 15px;
+            }
         }
         
         .statement-table th:last-child {
@@ -316,8 +453,14 @@
         }
         
         .statement-table td {
-            padding: 10px 15px;
+            padding: 8px;
             vertical-align: middle;
+        }
+        
+        @media (min-width: 768px) {
+            .statement-table td {
+                padding: 10px 15px;
+            }
         }
         
         .transaction-date {
@@ -328,6 +471,16 @@
         
         .transaction-description {
             color: #333;
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        @media (min-width: 768px) {
+            .transaction-description {
+                max-width: none;
+            }
         }
         
         .transaction-amount {
@@ -345,10 +498,18 @@
         }
         
         .transaction-status {
-            font-size: 12px;
-            padding: 3px 8px;
+            font-size: 11px;
+            padding: 3px 6px;
             border-radius: 3px;
             display: inline-block;
+            white-space: nowrap;
+        }
+        
+        @media (min-width: 768px) {
+            .transaction-status {
+                font-size: 12px;
+                padding: 3px 8px;
+            }
         }
         
         .status-cleared {
@@ -373,22 +534,48 @@
             font-weight: bold;
             color: #004a99;
             text-align: right;
+            white-space: nowrap;
         }
         
-        /* 2012 Footer */
+        /* 2012 Footer - Mobile Responsive */
         .statement-footer {
             background-color: #f5f5f5;
             border-top: 1px solid #ddd;
-            padding: 15px 25px;
+            padding: 12px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        @media (min-width: 768px) {
+            .statement-footer {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 15px 25px;
+                gap: 0;
+            }
         }
         
         .transaction-summary {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            width: 100%;
+        }
+        
+        @media (min-width: 576px) {
+            .transaction-summary {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .transaction-summary {
+                display: flex;
+                gap: 30px;
+                width: auto;
+            }
         }
         
         .summary-item {
@@ -397,21 +584,43 @@
         }
         
         .summary-label {
-            font-size: 12px;
+            font-size: 11px;
             color: #777;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
+        }
+        
+        @media (min-width: 768px) {
+            .summary-label {
+                font-size: 12px;
+                margin-bottom: 5px;
+            }
         }
         
         .summary-value {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: bold;
             color: #333;
+        }
+        
+        @media (min-width: 768px) {
+            .summary-value {
+                font-size: 14px;
+            }
         }
         
         .pagination {
             display: flex;
             align-items: center;
             gap: 5px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        
+        @media (min-width: 768px) {
+            .pagination {
+                margin-top: 0;
+                justify-content: flex-end;
+            }
         }
         
         .pagination-btn {
@@ -440,8 +649,14 @@
         
         /* 2012 Print Button */
         .print-section {
-            text-align: right;
+            text-align: center;
             margin-bottom: 15px;
+        }
+        
+        @media (min-width: 768px) {
+            .print-section {
+                text-align: right;
+            }
         }
         
         .print-btn {
@@ -456,70 +671,56 @@
             align-items: center;
             gap: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            justify-content: center;
+        }
+        
+        @media (min-width: 768px) {
+            .print-btn {
+                width: auto;
+                justify-content: initial;
+            }
         }
         
         .print-btn:hover {
             background: linear-gradient(to bottom, #004a99, #003366);
         }
         
-        /* 2012 Sidebar (if needed) */
-        .sidebar {
-            width: 200px;
-            background-color: #f9f9f9;
-            border-right: 1px solid #ddd;
-            padding: 20px 15px;
-        }
-        
-        .sidebar-title {
-            font-size: 16px;
-            color: #004a99;
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        .sidebar-menu {
-            list-style: none;
-        }
-        
-        .sidebar-menu li {
-            margin-bottom: 5px;
-        }
-        
-        .sidebar-menu a {
-            color: #555;
-            text-decoration: none;
-            padding: 8px 10px;
-            display: block;
-            border-radius: 3px;
-        }
-        
-        .sidebar-menu a:hover {
-            background-color: #e6f2ff;
-            color: #004a99;
-        }
-        
         /* 2012 Ad Banner Style */
         .ad-banner {
             background-color: #fff8e1;
             border: 2px dashed #ffcc00;
-            padding: 10px 15px;
-            margin: 20px 0;
+            padding: 10px 12px;
+            margin: 15px 0;
             text-align: center;
-            font-size: 13px;
+            font-size: 12px;
             color: #cc7a00;
             border-radius: 5px;
+        }
+        
+        @media (min-width: 768px) {
+            .ad-banner {
+                padding: 10px 15px;
+                font-size: 13px;
+            }
         }
         
         /* 2012 Copyright Footer */
         .copyright-footer {
             text-align: center;
-            padding: 15px;
-            font-size: 12px;
+            padding: 12px;
+            font-size: 11px;
             color: #777;
             border-top: 1px solid #ddd;
-            margin-top: 20px;
+            margin-top: 15px;
             background-color: #f9f9f9;
+        }
+        
+        @media (min-width: 768px) {
+            .copyright-footer {
+                padding: 15px;
+                font-size: 12px;
+            }
         }
         
         /* Low Balance Warning */
@@ -527,11 +728,18 @@
             background-color: #fff3cd;
             border: 1px solid #ffeaa7;
             border-left: 4px solid #ffc107;
-            padding: 12px 15px;
-            margin-bottom: 20px;
+            padding: 10px 12px;
+            margin-bottom: 15px;
             border-radius: 4px;
-            font-size: 13px;
+            font-size: 12px;
             color: #856404;
+        }
+        
+        @media (min-width: 768px) {
+            .low-balance-warning {
+                padding: 12px 15px;
+                font-size: 13px;
+            }
         }
         
         .low-balance-warning i {
@@ -539,11 +747,34 @@
             color: #ff9800;
         }
         
+        /* 2012 Alert Box */
+        .alert-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffcc00;
+            border-radius: 5px;
+            padding: 10px 12px;
+            margin-bottom: 15px;
+            font-size: 12px;
+            color: #cc7a00;
+        }
+        
+        @media (min-width: 768px) {
+            .alert-box {
+                padding: 12px 15px;
+                font-size: 13px;
+            }
+        }
+        
+        .alert-box i {
+            margin-right: 8px;
+        }
+        
         /* Print Styles */
         @media print {
             body {
                 background: white;
                 font-size: 12px;
+                padding: 0;
             }
             
             .container {
@@ -556,12 +787,10 @@
             .no-print, .print-btn, .search-box, .pagination, .nav-bar {
                 display: none !important;
             }
-        }
-        
-        /* Responsive for 2012 standards */
-        @media (max-width: 1024px) {
-            .container {
-                width: 95%;
+            
+            .statement-table {
+                min-width: 100%;
+                font-size: 11px;
             }
         }
         
@@ -592,19 +821,66 @@
             background: linear-gradient(to bottom, #004a99, #003366);
         }
         
-        /* 2012 Alert Box */
-        .alert-box {
-            background-color: #fff8e1;
-            border: 1px solid #ffcc00;
-            border-radius: 5px;
-            padding: 12px 15px;
-            margin-bottom: 20px;
-            font-size: 13px;
-            color: #cc7a00;
+        /* Mobile-Specific Styles */
+        @media (max-width: 767px) {
+            .statement-table th:nth-child(2),
+            .statement-table td:nth-child(2) {
+                max-width: 150px;
+            }
+            
+            .period-selector {
+                justify-content: center;
+            }
+            
+            .period-btn {
+                min-width: calc(50% - 10px);
+            }
         }
         
-        .alert-box i {
-            margin-right: 8px;
+        @media (max-width: 479px) {
+            .bank-logo {
+                flex-direction: column;
+                text-align: center;
+                gap: 5px;
+            }
+            
+            .period-btn {
+                min-width: 100%;
+            }
+            
+            .transaction-summary {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+        
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .nav-bar a,
+            .period-btn,
+            .pagination-btn,
+            .search-btn,
+            .print-btn {
+                min-height: 44px;
+                padding-top: 12px;
+                padding-bottom: 12px;
+            }
+            
+            .statement-table td,
+            .statement-table th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+            }
+            
+            .filter-dropdown select {
+                height: 44px;
+                font-size: 16px; /* Prevents iOS zoom on focus */
+            }
+            
+            .search-box input {
+                height: 44px;
+                font-size: 16px; /* Prevents iOS zoom on focus */
+            }
         }
     </style>
 </head>
@@ -627,8 +903,8 @@
             </div>
         </div>
         
-        <!-- 2012 Navigation -->
-        <div class="nav-bar">
+        <!-- 2012 Navigation - Mobile Optimized -->
+        <div class="nav-bar no-print">
             <a href="#" class="active">Account Summary</a>
             <a href="#">Transactions</a>
             <a href="#">Transfer Funds</a>
@@ -653,7 +929,7 @@
                 Your statement is ready to view and print. For your security, always log out when finished.
             </div>
             
-            <!-- 2012 Summary Boxes -->
+            <!-- 2012 Summary Boxes - Responsive Grid -->
             <div class="summary-boxes">
                 <div class="summary-box">
                     <div class="summary-box-header">
@@ -692,7 +968,7 @@
                 </div>
             </div>
             
-            <!-- 2012 Ad Banner (common in 2012 websites) -->
+            <!-- 2012 Ad Banner -->
             <div class="ad-banner">
                 <i class="fa fa-star"></i> <strong>TD Overdraft Protection:</strong> Avoid fees with our overdraft protection plan! <a href="#" style="color: #0066cc; font-weight: bold;">Learn More</a>
             </div>
@@ -705,7 +981,7 @@
                 </button>
             </div>
             
-            <!-- 2012 Statement Controls -->
+            <!-- 2012 Statement Controls - Responsive Layout -->
             <div class="statement-controls no-print">
                 <div class="period-selector">
                     <button class="period-btn active">Jan 1 - Feb 8, 2026</button>
@@ -730,16 +1006,16 @@
                 </div>
             </div>
             
-            <!-- 2012 Statement Table -->
+            <!-- 2012 Statement Table - Horizontal Scroll on Mobile -->
             <div class="statement-table-container">
                 <table class="statement-table">
                     <thead>
                         <tr>
-                            <th width="100">DATE</th>
+                            <th width="80">DATE</th>
                             <th>DESCRIPTION</th>
-                            <th width="120" style="text-align: right;">AMOUNT</th>
-                            <th width="100">STATUS</th>
-                            <th width="120" style="text-align: right;">BALANCE</th>
+                            <th width="100" style="text-align: right;">AMOUNT</th>
+                            <th width="90">STATUS</th>
+                            <th width="100" style="text-align: right;">BALANCE</th>
                         </tr>
                     </thead>
                     <tbody id="transactionsBody">
@@ -748,7 +1024,7 @@
                 </table>
             </div>
             
-            <!-- 2012 Footer -->
+            <!-- 2012 Footer - Mobile Optimized -->
             <div class="statement-footer">
                 <div class="transaction-summary">
                     <div class="summary-item">
@@ -791,8 +1067,50 @@
     </div>
 
     <script>
+        // Mobile Menu Toggle (for extra small screens)
+        function initMobileMenu() {
+            const navBar = document.querySelector('.nav-bar');
+            if (window.innerWidth < 480) {
+                // Create mobile menu toggle button
+                const menuToggle = document.createElement('div');
+                menuToggle.className = 'mobile-menu-toggle';
+                menuToggle.innerHTML = `
+                    <button class="btn-2012 primary" style="width: 100%; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+                        <span>Menu</span>
+                        <i class="fa fa-bars"></i>
+                    </button>
+                `;
+                
+                // Insert before nav bar
+                navBar.parentNode.insertBefore(menuToggle, navBar);
+                
+                // Initially hide nav links on very small screens
+                navBar.style.display = 'none';
+                
+                // Toggle menu on click
+                menuToggle.querySelector('button').addEventListener('click', function() {
+                    if (navBar.style.display === 'none') {
+                        navBar.style.display = 'flex';
+                    } else {
+                        navBar.style.display = 'none';
+                    }
+                });
+                
+                // Update on window resize
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth >= 480) {
+                        navBar.style.display = 'flex';
+                        if (document.querySelector('.mobile-menu-toggle')) {
+                            document.querySelector('.mobile-menu-toggle').remove();
+                        }
+                    }
+                });
+            }
+        }
+        
         // Updated transaction data with $40 balance and increased spending
         const transactions = [
+            // ... (transaction data remains the same as before)
             { date: "JAN 01", description: "Starting Balance", amount: "", balance: "6,144.38", type: "balance", status: "cleared" },
             { date: "JAN 02", description: "SALARY DEPOSIT", amount: "+2,850.00", balance: "8,994.38", type: "deposit", status: "cleared" },
             { date: "JAN 03", description: "RENT PAYMENT", amount: "-1,800.00", balance: "7,194.38", type: "withdrawal", status: "cleared" },
@@ -899,7 +1217,7 @@
                 
                 row.innerHTML = `
                     <td class="transaction-date">${transaction.date}</td>
-                    <td class="transaction-description">${transaction.description}</td>
+                    <td class="transaction-description" title="${transaction.description}">${transaction.description}</td>
                     <td class="transaction-amount ${amountClass}">${transaction.amount || '-'}</td>
                     <td>${statusBadge}</td>
                     <td class="transaction-balance">$${transaction.balance}</td>
@@ -914,6 +1232,9 @@
         
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize mobile menu
+            initMobileMenu();
+            
             // Display all transactions initially
             displayTransactions();
             
@@ -978,8 +1299,16 @@
                     
                     // Add active class to clicked link
                     this.classList.add('active');
+                    
+                    // On mobile, close the menu after selection
+                    if (window.innerWidth < 480) {
+                        document.querySelector('.nav-bar').style.display = 'none';
+                    }
                 });
             });
+            
+            // Update mobile menu on resize
+            window.addEventListener('resize', initMobileMenu);
         });
     </script>
 </body>
